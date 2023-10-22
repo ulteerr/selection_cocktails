@@ -41,4 +41,31 @@ a {
 	padding: 50px 0 80px;
 	width: 560px;
 	text-align: left;
+	&-item {
+		position: relative;
+		margin-bottom: 20px;
+		padding-left: 30px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+		&::before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 0;
+			transform: translateY(-50%);
+			width: 18px;
+			height: 18px;
+			background: url("/src/assets/img/heart.png") no-repeat 50% 50%;
+		}
+	}
+}
+
+.instructions {
+	width: 516px;
+	margin: 0;
+	font-size: 20px;
+	letter-spacing: 0.1em;
+	color: $textMuted;
 }

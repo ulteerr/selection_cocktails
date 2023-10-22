@@ -1,5 +1,9 @@
 <template>
-  <AppLayout imgUrl="/src/assets/img/dawa-cocktail.png">
+  <AppLayout
+    imgUrl="/src/assets/img/dawa-cocktail.png"
+    :backFunc="removeIngredient"
+    :is-back-button-visable="ingredient"
+  >
     <div class="wrapper">
       <div v-if="!ingredient || !cocktails" class="info">
         <div class="title">Choose your drink</div>
@@ -57,10 +61,12 @@ const { ingredients, cocktails, ingredient } = storeToRefs(rootStore);
 function getCocktails() {
   rootStore.getCocktails(rootStore.ingredient);
 }
+function removeIngredient() {
+  rootStore.setIngredient(null);
+}
 </script>
 <style lang="scss" scoped>
 @import "../assets/styles/main";
-
 .select-wrapper {
   padding-top: 50px;
 }

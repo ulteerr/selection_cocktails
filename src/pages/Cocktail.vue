@@ -1,6 +1,6 @@
 <template>
   <div v-if="cocktail" class="wrap">
-    <AppLayout :imgUrl="cocktail.strDrinkThumb">
+    <AppLayout :imgUrl="cocktail.strDrinkThumb" :backFunc="goBack">
       <div class="wrapper">
         <div class="info">
           <div class="title">{{ cocktail.strDrink }}</div>
@@ -11,12 +11,17 @@
               :key="key"
               class="list-item"
             >
-						{{ item.name }}
-						<template v-if="item.measure">
-							|
-							{{ item.measure }}
-						</template>
-						</div>
+              {{ item.name }}
+              <template v-if="item.measure">
+                |
+                {{ item.measure }}
+              </template>
+            </div>
+          </div>
+          <div>
+            <div class="instructions">
+              {{ cocktail.strInstructions }}
+            </div>
           </div>
         </div>
       </div>
@@ -26,12 +31,13 @@
 
 <script setup>
 import AppLayout from "../components/AppLayout.vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { computed, ref } from "vue";
 import axios from "axios";
 import { COCKTAIL_BY_ID } from "@/constants";
 
 const route = useRoute();
+const router = useRouter();
 const cocktailId = computed(() => route.path.split("/").pop());
 const cocktail = ref(null);
 
@@ -53,9 +59,11 @@ async function getCocktail() {
   const data = await axios.get(`${COCKTAIL_BY_ID}${cocktailId.value}`);
   cocktail.value = data?.data?.drinks[0];
 }
+function goBack() {
+  router.go(-1);
+}
 getCocktail();
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/styles/main";
 </style>

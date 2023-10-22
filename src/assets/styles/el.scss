@@ -1,0 +1,21 @@
+.el {
+	&-input {
+		&__wrapper {
+			background-color: $background;
+		}
+		&__inner {
+			color: $text;
+		}
+	}
+	&-select {
+		&-dropdown {
+			background-color: $background;
+			&__item.selected {
+				color: $text;
+				&.hover {
+					color: var(--el-text-color-regular);
+				}
+			}
+		}
+	}
+}

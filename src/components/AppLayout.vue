@@ -11,7 +11,9 @@
           :icon="Back"
           circle
         />
-        <el-button class="btn">Get random cocktail</el-button>
+        <el-button class="btn" @click="goForCocktailRandom"
+          >Get random cocktail</el-button
+        >
       </div>
       <slot></slot>
     </div>
@@ -20,6 +22,9 @@
 
 <script setup>
 import { Back } from "@element-plus/icons-vue";
+import { computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { ROUTES_PATHS } from "@/constants";
 const props = defineProps({
   imgUrl: {
     type: String,
@@ -34,6 +39,16 @@ const props = defineProps({
     default: true,
   },
 });
+const route = useRoute();
+const router = useRouter();
+
+const routeName = computed(() => route.name);
+function goForCocktailRandom() {
+  router.push(ROUTES_PATHS.COCKTAIL_RANDOM);
+  if (routeName.value === ROUTES_PATHS.COCKTAIL_RANDOM) {
+    router.go();
+  }
+}
 </script>
 	
 <style lang="scss" scoped>

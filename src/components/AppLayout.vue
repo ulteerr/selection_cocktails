@@ -1,6 +1,6 @@
 <template>
   <div class="root">
-    <div :style="`background-image:url(${imgUrl})`" class="img"></div>
+    <div v-lazy:background-image="imgUrl" class="img"></div>
     <div class="main">
       <div class="btns">
         <el-button

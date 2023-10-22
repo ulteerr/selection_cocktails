@@ -30,7 +30,7 @@
           Try our delicious cocktail recipes for every occasion. Find delicious
           cocktail recipes by ingredient through our cocktail generator.
         </div>
-        <img src="/src/assets/img/cocktails.png" alt="Cocktails" class="img" />
+        <img v-lazy="'/src/assets/img/cocktails.png'" alt="Cocktails" class="img" />
       </div>
       <div v-else class="info">
         <div class="title">COCKTAILS WITH {{ ingredient }}</div>

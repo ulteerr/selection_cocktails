@@ -14,7 +14,7 @@
               @slideChange="onSlideChange"
             >
               <swiper-slide v-for="(ingredient, key) in ingredients" :key="key">
-                <img :src="`${INGREDIENT_PIC}${ingredient}-Small.png`" alt="" />
+                <img v-lazy="`${INGREDIENT_PIC}${ingredient}-Small.png`" alt="" />
                 <div class="name">
                   {{ ingredient }}
                 </div>
